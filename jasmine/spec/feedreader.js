@@ -77,40 +77,30 @@ $(function() {
          * 和异步的 done() 函数。
          */
          beforeEach(function(done){
-           loadFeed(0,function(){
-             done();
-           });
+           loadFeed(0,done)
          });
 
-         it('loadFeed() should be worked and has one enty at least',function(done){
-           expect($('.entry').text()).not.toBe("");
+         it('loadFeed should be worked and has one enty at least',function(done){
+           expect($('.feed .entry').text()).not.toBe("");
            done();
          })
        });
     /* TODO: 写一个叫做 "New Feed Selection" 的测试用例 */
-      describe('New Feed Selection', function() {
-        /* TODO:
-         * 写一个测试保证当用 loadFeed 函数加载一个新源的时候内容会真的改变。
-         * 记住，loadFeed() 函数是异步的。
-         */
-
-         beforeEach(function(done){
-           loadFeed(0,function(){
-             done();
+        describe('New Feed Selection', function () {
+          var feed ;
+          beforeEach(function (done) {
+            loadFeed(0, function () {
+            feed = $('.feed').text();
+            loadFeed(1, function () {
+            done();
            });
+          });
          });
-         var feed0 = $('.feed').text();
-
-         beforeEach(function(done){
-           loadFeed(1,function(){
-             done();
-           });
-         });
-         var feed1 = $('.feed').text();
 
          it('load new source will be different', function (done) {
-                expect(feed1 != feed0).toBe(false);
-                done();
-            })
-    })
+             expect($('.feed').text() != feed ).toBe(true);
+             done();
+         })
+      })
+
 }());
