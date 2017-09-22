@@ -80,9 +80,8 @@ $(function() {
            loadFeed(0,done)
          });
 
-         it('loadFeed should be worked and has one enty at least',function(done){
+         it('loadFeed should be worked and has one enty at least',function(){
            expect($('.feed .entry').text()).not.toBe("");
-           done();
          })
        });
     /* TODO: 写一个叫做 "New Feed Selection" 的测试用例 */
@@ -97,9 +96,8 @@ $(function() {
           });
          });
 
-         it('load new source will be different', function (done) {
+         it('load new source will be different', function () {
              expect($('.feed').text() != feed ).toBe(true);
-             done();
          })
       })
 
